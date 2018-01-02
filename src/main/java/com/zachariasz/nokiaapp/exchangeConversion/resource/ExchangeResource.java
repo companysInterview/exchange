@@ -19,8 +19,6 @@ import com.zachariasz.nokiaapp.exchangeConversion.service.ExchangeServiceGet;
 import com.zachariasz.nokiaapp.exchangeConversion.service.ExchangeServiceWithoutGet;
 
 @Path("/exchanges")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 public class ExchangeResource implements ExchangeResourceInterface {
 
 	private ExchangeServiceGet exchangeService = null;
@@ -28,12 +26,15 @@ public class ExchangeResource implements ExchangeResourceInterface {
 
 	@GET
 	@Path("/all")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Exchange> getAllExchanges() {
 		exchangeService = new ExchangeServiceGet();
 		return exchangeService.getAllExchanges();
 	}
 
 	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.TEXT_PLAIN)
 	public String getExchange(@BeanParam ExchangeFilterBean exchangeFilter) {
 		if (exchangeRatesHaveProperForm(exchangeFilter)) {
 			exchangeService = new ExchangeServiceGet();
@@ -43,6 +44,8 @@ public class ExchangeResource implements ExchangeResourceInterface {
 	}
 
 	@POST
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public String addExchange(Exchange exchange) {
 		if (exchangeRateHasProperForm(exchange.getId()) && ableToParseToDoubleAndNotNull(exchange.getValue())) {
 			exchangeServiceWithoutGet = new ExchangeServiceWithoutGet();
@@ -52,6 +55,8 @@ public class ExchangeResource implements ExchangeResourceInterface {
 	}
 
 	@DELETE
+	@Produces(MediaType.TEXT_PLAIN)
+	@Consumes(MediaType.TEXT_PLAIN)
 	public String deleteExchange(@QueryParam("DEL") String exchangeRateName) {
 		if (exchangeRateHasProperForm(exchangeRateName)) {
 			exchangeServiceWithoutGet = new ExchangeServiceWithoutGet();
