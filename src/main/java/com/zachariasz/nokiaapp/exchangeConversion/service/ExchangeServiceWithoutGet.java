@@ -9,7 +9,7 @@ import com.zachariasz.nokiaapp.exchangeConversion.database.JPAUnit;
 import com.zachariasz.nokiaapp.exchangeConversion.model.Exchange;
 
 
-public class ExchangeServiceWithoutGet {
+public class ExchangeServiceWithoutGet implements ExchangeServiceWihoutGetInterface{
 	//It should be open when session is starting and close when session is closing
 	private EntityManager entityManager = JPAUnit.getEntityManagerFactory().createEntityManager();
 	private EntityTransaction transaction = null;

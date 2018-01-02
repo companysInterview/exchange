@@ -21,7 +21,7 @@ import com.zachariasz.nokiaapp.exchangeConversion.service.ExchangeServiceWithout
 @Path("/exchanges")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class ExchangeResource {
+public class ExchangeResource implements ExchangeResourceInterface {
 
 	private ExchangeServiceGet exchangeService = null;
 	private ExchangeServiceWithoutGet exchangeServiceWithoutGet = null;

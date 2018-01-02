@@ -14,7 +14,7 @@ import com.zachariasz.nokiaapp.exchangeConversion.model.Exchange;
 
 
 
-public class ExchangeServiceGet {
+public class ExchangeServiceGet implements ExchangeServiceGetInterface {
 	//Entity manager factory should be open when session is starting and close when session is closing
 	private EntityManager entityManager = null;
 	private String baseExchange = "PLN";
